@@ -1,1 +1,5 @@
 vendor
+temp/index-defaults
+temp/view-defaults
+temp/view-gallery
+
