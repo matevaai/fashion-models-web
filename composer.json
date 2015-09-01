@@ -1,0 +1,20 @@
+{
+    "name": "nasmat/konkurs-web",
+    "description": "fashion models",
+    "require": {
+        "abeautifulsite/simpleimage": "~2"
+    },
+    "repositories": [ 
+        {
+            "type": "git",
+            "url": "git@github.com:claviska/SimpleImage.git"
+        }
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Atanaska Mateva",
+            "email": "a.mateva@yahoo.com"
+        }
+    ]
+}
