@@ -59,8 +59,11 @@
 					if (strpos($image, "default.jpg") !== false) {
 						continue;
 					}
-					
-					$thumbnail = './temp/view-gallery/'.basename($image);
+					$folder = './temp/view-gallery/'.$id.'/';
+					if (!is_dir($folder)) {
+						mkdir($folder);
+					}
+					$thumbnail = $folder.basename($image);
 					if(!file_exists($thumbnail)) {
 						try {
 							$img = new abeautifulsite\SimpleImage($image);
