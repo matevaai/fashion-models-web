@@ -12,7 +12,6 @@ if(!function_exists('readline')) {
 function getModels($path) 
 {
 	if (!file_exists($path)) {
-		echo "\n$path does not exist!";
 		return false;
 	}
 
@@ -30,10 +29,8 @@ function saveModels($models, $path)
 {
 	$json = json_encode($models);
 	if (file_put_contents($path, $json) === false) {
-		echo "\n Error while saving data";
 		return false;
 	} else {
-		echo "\nData successfully saved";
 		return true;
 	}
 }
@@ -45,7 +42,7 @@ function getNextAutoIndex()
 	$new_auto_index = $current_auto_index + 1;
 
 	if (file_put_contents($path, $new_auto_index) === false) {
-		echo "\n Error while saving next auto index";
+		return false;
 	} 
 	return $current_auto_index;
 }
@@ -54,7 +51,7 @@ function getNextAutoIndex()
 function actionEditSave($models, $index)
 {
 	if (!isset($models[$index])) {
-		die("\nCan not find the model with number $number");
+		return false;
 	}
 	$model = $models[$index]; 
 
@@ -101,6 +98,36 @@ function actionEditSave($models, $index)
 	return false;
 }
 
+function modelSanitize($model)
+{
+	foreach ($model as $key => $value) {
+		switch ($key) {
+		case 'names':
+			$model['names']['first'] = htmlspecialchars($value['first']);
+			$model['names']['last'] = htmlspecialchars($value['last']);
+			break;
+		
+		case 'age':
+			$model["age"] = intval($value);
+			break;
+		
+		case 'height':
+			$model["height"] = htmlspecialchars($value);
+			break;
+
+		case 'waist':
+			$model["waist"] = htmlspecialchars($value);
+			break;
+
+		case 'chest':
+			$model["chest"] = htmlspecialchars($value);
+			break;
+		}
+	}
+
+	return $model;
+}
+
 function actionEditprompt($model) 
 {
 	echo "\nEditing ".ucfirst($model["names"]["first"])." ".ucfirst($model["names"]["last"]).": ";
@@ -125,10 +152,8 @@ function saveModelVotes($votes, $path)
 {
 	$json = json_encode($votes);
 	if (file_put_contents($path, $json) === false) {
-		echo "\n Error while saving data";
 		return false;
 	} else {
-		echo "\nModel votes successfully saved";
 		return true;
 	}
 }
@@ -136,7 +161,6 @@ function saveModelVotes($votes, $path)
 function getModelsVotes($path) 
 {
 	if (!file_exists($path)) {
-		echo "\n$path does not exist!";
 		return false;
 	}
 

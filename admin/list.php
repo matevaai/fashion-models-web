@@ -6,7 +6,10 @@
 
     <div class="container theme-showcase" role="main">
 		<div class="page-header">
-			<h1>Model List</h1>
+			<h1>Model List
+				<a href="admin.php?action=new" class="btn btn-primary pull-right">New Model</a>
+
+			</h1>
 		</div>
 
 		<div class="row">

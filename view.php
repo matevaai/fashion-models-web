@@ -1,5 +1,8 @@
 <html lang="en">
-<?php $title = "Model Profile"; ?>
+<?php 
+$title = "Model Profile"; 
+$currentPage = "models";
+?>
 <?php include 'lib/head.php'; ?>
   <body role="document">
 

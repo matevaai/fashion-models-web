@@ -12,9 +12,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Models</a></li>
-            <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li<?php echo $currentPage == 'models' ? ' class="active"' : '' ?>><a href="index.php">Models</a></li>
+            <li<?php echo $currentPage == 'about' ? ' class="active"' : '' ?>><a href="about.php">About</a></li>
+            <li<?php echo $currentPage == 'contact' ? ' class="active"' : '' ?>><a href="contact.php">Contact</a></li>
+            <li<?php echo $currentPage == 'admin' ? ' class="active"' : '' ?>><a href="admin.php">Admin</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

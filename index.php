@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $title = "Models Index"; ?>
+<?php 
+$title = "Models Index"; 
+$currentPage = "models";
+?>
 <?php require('./vendor/autoload.php'); ?>
 <?php include 'lib/head.php'; ?>
 
