@@ -14,6 +14,9 @@ switch ($action) {
 		break;
 	case 'delete':
 		include('./admin/delete.php');
+		break;	
+	case 'delete-image':
+		include('./admin/deleteImage.php');
 		break;
 	
 	case 'list':
