@@ -173,3 +173,22 @@ function getModelsVotes($path)
 
 	return $votes;
 }
+
+function uploadModelImage($postedKey, $id, $fname)
+{
+	$uploaded = isset($_FILES[$postedKey]) ? $_FILES[$postedKey] : [];
+	if(!$uploaded['size']) {
+		return 0;
+	}
+	if($uploaded['error']) {
+		return $uploaded['error'];
+	}
+
+	$finfo = new finfo(FILEINFO_MIME_TYPE);
+	$data = $finfo->file($uploaded['tmp_name']);
+	if($data != 'image/jpeg') {
+		@unlink($uploaded['tmp_name']);
+	}
+
+	return move_uploaded_file($uploaded['tmp_name'], './images/models/'.$id.'/'.$fname.'.jpg');
+}

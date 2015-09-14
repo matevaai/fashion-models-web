@@ -18,5 +18,8 @@ if (!$image || !file_exists($image)) {
 	die('File not found: '.$image);
 }
 
-// unlink($image);
+@unlink($image);
+@unlink('./temp/index-default/'.$id.'.jpg');
+@unlink('./temp/view-default/'.$id.'.jpg');
+@unlink('./temp/view-gallery/'.$id.'/'.$name);
 echo 'OK';

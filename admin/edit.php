@@ -19,7 +19,23 @@ if ($model === null) {
 	die("Missing model");
 }
 
+$images = glob('./images/models/'.$id.'/*');
+
 if (isset($_POST["update"])) {
+	var_dump($_FILES);
+	if(empty($images)) {
+		$fname = 'default';
+	} else {
+		$fname = count($images);
+	}
+	$check = uploadModelImage('model_image', $id, $fname);
+	if(
+		$check === false // move uploaded files - error
+		|| 
+		(is_numeric($check) && $check)) // file upload error number
+	{
+	}
+
 	$model = array(
 		'names' => array('first' => $_POST['firstname'], 'last' => $_POST['lastname']),
 		'age' => $_POST['age'],
@@ -28,14 +44,13 @@ if (isset($_POST["update"])) {
 		'waist' => $_POST['waist'],
 	);
 	$models[$id] = modelSanitize($model);
-	var_dump($models[$id]); eixt;
 
 	saveModels($models, './data/models.json');
 	header('Location: /admin.php');
 	exit;
 }
 
-$images = glob('./images/models/'.$id.'/*');
+
 ?>
 <html lang="en">
 <?php $title = "Edit Model - Admin"; ?>
@@ -59,7 +74,7 @@ $images = glob('./images/models/'.$id.'/*');
 		<br/><br/>
 		
 			<div class="row">
-				<form action="admin.php?action=edit&amp;id=<?php echo ($id + 1); ?>" method="post" class="col-md-9 col-xs-12">
+				<form action="admin.php?action=edit&amp;id=<?php echo ($id + 1); ?>" method="post" class="col-md-9 col-xs-12" enctype="multipart/form-data">
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="general">
 							<div class="form-group col-md-6 col-xs-12">
